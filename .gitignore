@@ -1,0 +1,8 @@
+.idea/
+__pycache__/
+
+venv/
+jason_data.json
+Projet-pulp.lp
+Projet-pulp.sol
+solution.csv
