@@ -60,7 +60,7 @@ def introduce_selling_cost(d_r, b_p_1, b_p_2):
     selling_cost = np.array(
         [
             # camion de type 1
-            [math.pow(b_p_1/(1+d_r), i/2) for i in range(10)] + [ math.pow(b_p_1/(1+d_r), 5) ],
+            [b_p_1*(1-math.pow(1/(1+d_r), i/2) for i in range(10)] + [ b_p_1*math.pow(1/(1+d_r), 5) ],
             # camion de type 2
             [math.pow(b_p_2/(1+d_r), i/2) for i in range(10)] + [ math.pow(b_p_2/(1+d_r), 5) ]
         ]
