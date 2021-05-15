@@ -159,7 +159,7 @@ problem += costs.maintainance(lpSum(c[i][s] for i in [0, 1]
            costs.salary(v_moy, na, n1, n2, semesters, cities_number, road_distances1, road_distances2) + \
            costs.fuel(fuel_price, conso, n1, n2, na, road_distances1, road_distances2, cities_number, semesters) + \
            costs.buying_trucks(c) + \
-           costs.amortissement(V)
+           costs.amortissement(V, semester_number)
 
 
 problem.solve(solver=GLPK(msg=True, keepFiles=True, timeLimit=30))

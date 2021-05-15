@@ -71,7 +71,7 @@ def salary(V, na, n1, n2, semesters, cities_number, d1, d2):
     res = 0
     for s in semesters:
         for v in range(cities_number):
-            res += total_distance(v, s, d1, d2, n1, n2, na)/V
+            res += total_distance(v, s, d1, d2, n1, n2, na) / V
         for p in [0, 1]:
             res += na[p][s]
             for v in range(1, cities_number):
@@ -80,6 +80,7 @@ def salary(V, na, n1, n2, semesters, cities_number, d1, d2):
                     res += 2 * n2[p][v][s][a]
     return res * alpha
 
+
 def buying_trucks(c):
     res = 0
     for i in [0, 1]:
@@ -87,4 +88,13 @@ def buying_trucks(c):
             res += 40000 * c[i][10]
         else:
             res += 50000 * c[i][10]
+    return res
+
+
+def amortissement(V, semester_number):
+    res = 0
+    for s in range(1, semester_number):
+        for a in range(1, s):
+            for i in [0, 1]:
+                res += V[s][a][i]
     return res
