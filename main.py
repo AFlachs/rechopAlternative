@@ -127,12 +127,15 @@ for s in semesters:
                                for a in [0, 1]) + lpSum(na[p][s] for p in [0, 1]) + 3) <= business_days_by_semester * \
                         c[i][s], 'net type 2, {}'.format(s))
 
-for i in [0, 1]:
-    for p in [0, 1]:
-        for v in range(cities_number):
-            problem += n1[p][v][0] == 0  # Le semestre 0 est celui avant le début des trajets, on ne comptabilise pas de course
-            problem += na[p][0] == 0
-        lpSum()
+
+for p in [0, 1]:
+    for v in range(cities_number):
+        problem += n1[p][v][0] == 0  # Le semestre 0 est celui avant le début des trajets, on ne comptabilise pas de course
+        problem += na[p][0] == 0
+    for a in [0, 1]:
+        for v in range(1,cities_number):
+            problem += lpSum(n2[p][v][0][a]) == 0
+
 
 for s in range(1, semester_number-1):
     for i in [0, 1]:
