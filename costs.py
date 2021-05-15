@@ -80,6 +80,7 @@ def salary(V, na, n1, n2, semesters, cities_number, d1, d2):
                     res += 2 * n2[p][v][s][a]
     return res * alpha
 
+
 def buying_trucks(c):
     res = 0
     for i in [0, 1]:

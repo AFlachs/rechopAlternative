@@ -127,12 +127,15 @@ for s in semesters:
                                for a in [0, 1]) + lpSum(na[p][s] for p in [0, 1]) + 3) <= business_days_by_semester * \
                         c[i][s], 'net type 2, {}'.format(s))
 
-for i in [0, 1]:
-    for p in [0, 1]:
-        for v in range(cities_number):
-            problem += n1[p][v][0] == 0  # Le semestre 0 est celui avant le début des trajets, on ne comptabilise pas de course
-            problem += na[p][0] == 0
-        lpSum()
+
+for p in [0, 1]:
+    for v in range(cities_number):
+        problem += n1[p][v][0] == 0  # Le semestre 0 est celui avant le début des trajets, on ne comptabilise pas de course
+        problem += na[p][0] == 0
+    for a in [0, 1]:
+        for v in range(1,cities_number):
+            problem += lpSum(n2[p][v][0][a]) == 0
+
 
 for s in range(1, semester_number-1):
     for i in [0, 1]:
@@ -158,8 +161,8 @@ problem += costs.maintainance(lpSum(c[i][s] for i in [0, 1]
                                     for s in semesters)) + \
            costs.salary(v_moy, na, n1, n2, semesters, cities_number, road_distances1, road_distances2) + \
            costs.fuel(fuel_price, conso, n1, n2, na, road_distances1, road_distances2, cities_number, semesters) + \
-           costs.buying_trucks(c) + \
-           costs.amortissement(V)
+           costs.buying_trucks(c) #+ \
+           #costs.amortissement(V)
 
 
 problem.solve(solver=GLPK(msg=True, keepFiles=True, timeLimit=30))
